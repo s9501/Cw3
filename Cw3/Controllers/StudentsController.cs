@@ -30,7 +30,6 @@ namespace Cw3.Controllers
 
             using (SqlConnection con = new SqlConnection(ConString))
             using (SqlCommand com = new SqlCommand())
-
             {
                 com.Connection = con;
                 com.CommandText = "SELECT * FROM student";
