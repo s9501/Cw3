@@ -21,16 +21,18 @@ namespace Cw3.Controllers
         }
         */
         private const string ConString = "Data Source=db-mssql;Initial Catalog=s9501;Integrated Security=True";
+        
 
-
-        [HttpGet("{indexNumber}")]
-        public IActionResult GetStudents(string indexNumber)
+        [HttpGet("{id}")]
+        public IActionResult GetStudents(string id)
         {
             using (SqlConnection con = new SqlConnection(ConString))
             using (SqlCommand com = new SqlCommand())
             {
                 com.Connection = con;
-                com.CommandText = "SELECT * FROM student WHERE indexNumber = '"+indexNumber+"'";
+                com.CommandText = "SELECT * FROM student WHERE indexNumber = @id";
+                com.Parameters.AddWithValue("id", id);
+
 
                 con.Open();
                 var dr = com.ExecuteReader();
